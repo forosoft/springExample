@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--IOC容器 创建  java bean-->
+    <bean id="weCharNotify" class="com.service.impl.NotifyByWeCharImpl" />
+    <bean id="cellPhoneNotify" class="com.service.impl.NotifyByCellPhoneImpl" />
+
+    <!-- IoC容器做的是“依赖注入”到 order-->
+    <!-- order 是一个 java bean 注入依赖。-->
+    <bean id="order" class="com.dao.Order" >
+        <!-- 配置注入 NotifyByWeCharImpl 的实例化对象 -->
+        <!-- Call: Order.setNotifyService(weCharNotify) -->
+        <property name="notifyService" ref="weCharNotify"/>
+    </bean>
+
+
+</beans>
